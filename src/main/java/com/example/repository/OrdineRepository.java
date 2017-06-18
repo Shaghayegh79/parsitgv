@@ -9,13 +9,7 @@ import com.example.model.Ordine;
 //@CrossOrigin
 public interface OrdineRepository extends CrudRepository<Ordine, Long>{
 
-
 	Ordine findByIdordine(Long idOrdine);
-
 	List<Ordine> findByIdcliente(Long idCliente);
-	
-	
-	
-	
 
 }

@@ -30,10 +30,6 @@ public class Ingextra {
 	@Column(columnDefinition = "DECIMAL(6,2)")
 	private BigDecimal prezzo;
 
-	@OneToMany(mappedBy="ingextra")
-	private Set<VoceIngextra> voceIngextra;
-
-	
 	public Ingextra() {
 		//super();
 	}
@@ -42,18 +38,8 @@ public class Ingextra {
 		this.idingextra = idingextra;
 		this.nome = nome;
 		this.prezzo = prezzo;
-		this.voceIngextra = voceIngextra;
 	}
 
-	@XmlTransient
-	@JsonIgnore
-	public Set<VoceIngextra> getVoceIngextra() {
-		return voceIngextra;
-	}
-
-	public void setVoceIngextra(Set<VoceIngextra> voceIngextra) {
-		this.voceIngextra = voceIngextra;
-	}
 	public int getIdingextra() {
 		return idingextra;
 	}

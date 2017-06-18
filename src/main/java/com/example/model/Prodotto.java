@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
@@ -59,10 +60,6 @@ public class Prodotto {
 	@NotNull
 	private boolean disponibile;
 	
-	@OneToMany(mappedBy="prodotto")
-	private Set<OrdineVoce> ordineVoci;
-	
-
 	public Prodotto() {
 		//super();
 	}
@@ -81,7 +78,6 @@ public class Prodotto {
 		this.ingredienti = ingredienti;
 		this.foto = foto;
 		this.disponibile = disponibile;
-		this.ordineVoci = ordineVoci;
 	}
 
 
@@ -164,18 +160,6 @@ public class Prodotto {
 	public void setDisponibile(boolean disponibile) {
 		this.disponibile = disponibile;
 	}
-
-	@XmlTransient
-	@JsonIgnore
-	public Set<OrdineVoce> getOrdineVoci() {
-		return ordineVoci;
-	}
-
-
-	public void setOrdineVoci(Set<OrdineVoce> ordineVoci) {
-		this.ordineVoci = ordineVoci;
-	}
-
 
 	
 }

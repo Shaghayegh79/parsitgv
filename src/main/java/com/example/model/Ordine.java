@@ -28,14 +28,11 @@ public class Ordine {
 	private String nota;
 	@Column(name="data")
 	private String data;
-	
-	@Column(name="tab_cliente_id",insertable = true, updatable = true)
+	@Column(name="tab_cliente_id")
 	private Long idcliente;
-	@ManyToOne
-	@JoinColumn(name="tab_cliente_id",insertable = false, updatable = false)
-	private Cliente cliente;
-	
-	@OneToMany(mappedBy="ordine")
+   
+	@OneToMany
+	@JoinColumn(name="tab_ordine_idordine")
 	private Set<OrdineVoce> ordineVoci;
 
 	public Ordine() {
@@ -49,7 +46,7 @@ public class Ordine {
 		this.bibitedolci = bibitedolci;
 		this.nota = nota;
 		this.data = data;
-		this.cliente = cliente;
+	//	this.cliente = cliente;
 		this.ordineVoci = ordineVoci;
 		this.idcliente = idcliente;
 	}
@@ -108,7 +105,7 @@ public class Ordine {
 	public void setIdcliente(Long idCliente) {
 		this.idcliente = idCliente;
 	}
-	@XmlTransient
+/*	@XmlTransient
 	@JsonIgnore
 	public Cliente getCliente() {
 		return cliente;
@@ -116,6 +113,6 @@ public class Ordine {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
-	}
+	}*/
 	
 } 

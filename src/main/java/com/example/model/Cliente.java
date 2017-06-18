@@ -3,6 +3,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -31,7 +32,8 @@ public class Cliente {
 	@OneToOne(mappedBy="cliente")
 	private Account account;
 	
-	@OneToMany(mappedBy="cliente")
+	@OneToMany
+	@JoinColumn(name="tab_cliente_id")
 	private Set<Ordine> ordini;
 
 

@@ -20,19 +20,13 @@ public class VoceIngextra {
 	@Id @GeneratedValue
 	private Long id;
 	
-	@Column(name="tab_ingextra_idingextra")
-	private int idingextra;
-	
-	@ManyToOne
-	@JoinColumn(name="tab_ingextra_idingextra",insertable = false, updatable = false)
-	private Ingextra ingextra;
-	
 	@Column(name="tab_ordine_voce_idvoce")
 	private int idvoce;
 	
 	@ManyToOne
-	@JoinColumn(name="tab_ordine_voce_idvoce",insertable = false, updatable = false)
-	private OrdineVoce ordineVoce;
+	@JoinColumn(name="tab_ingextra_idingextra")
+	private Ingextra ingextra;
+	
 
 	public VoceIngextra() {
 		//super();
@@ -41,10 +35,8 @@ public class VoceIngextra {
 	public VoceIngextra(Long id, int idingextra, Ingextra ingextra, int idvoce, OrdineVoce ordineVoce) {
 		//super();
 		this.id = id;
-		this.idingextra = idingextra;
 		this.ingextra = ingextra;
 		this.idvoce = idvoce;
-		this.ordineVoce = ordineVoce;
 	}
 
 	public Long getId() {
@@ -53,14 +45,6 @@ public class VoceIngextra {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public int getIdingextra() {
-		return idingextra;
-	}
-
-	public void setIdingextra(int idingextra) {
-		this.idingextra = idingextra;
 	}
 
 	public Ingextra getIngextra() {
@@ -78,17 +62,4 @@ public class VoceIngextra {
 	public void setIdvoce(int idvoce) {
 		this.idvoce = idvoce;
 	}
-	@XmlTransient
-	@JsonIgnore
-	public OrdineVoce getOrdineVoce() {
-		return ordineVoce;
-	}
-
-	public void setOrdineVoce(OrdineVoce ordineVoce) {
-		this.ordineVoce = ordineVoce;
-	}
-
-	
-	
-
 }

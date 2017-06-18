@@ -20,7 +20,6 @@ public class OrdineService {
 		return newOrdine;
 	}
 	
-
 	public List<Ordine> getOrdini()
 	{
 		return (List<Ordine>)ordineRepository.findAll();
