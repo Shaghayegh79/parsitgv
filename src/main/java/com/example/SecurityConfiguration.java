@@ -42,6 +42,7 @@ public class SecurityConfiguration {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             // @formatter:off
+            http.csrf().disable();
         	http.cors().and()
         	.httpBasic()
         	.and()

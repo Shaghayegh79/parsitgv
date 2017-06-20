@@ -1,5 +1,8 @@
 package com.example.model;
+import java.util.Date;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlTransient;
 
 //import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,37 +23,39 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Ordine {
 	@Id @GeneratedValue
 	@Column(name="idordine")
-	private Long idordine;
+	private long idordine;
 	@Column(name="statoordine")
 	private int statoordine;
 	@Column(name="bibitedolci")
-	private int bibitedolci;
+	private boolean bibitedolci;
 	@Column(name="nota")
 	private String nota;
 	@Column(name="data")
-	private String data;
+	private Date data;
+	@NotNull
 	@Column(name="tab_cliente_id")
-	private Long idcliente;
-   
-	@OneToMany
+	private long idcliente;
+  
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="tab_ordine_idordine")
 	private Set<OrdineVoce> ordineVoci;
 
 	public Ordine() {
 		//super();
 	}
-	public Ordine(Long idordine, int statoordine, int bibitedolci, String commento, String data, Long idcliente,
-			Cliente cliente, Set<OrdineVoce> ordineVoci) {
-		//super();
+
+	public Ordine(long idordine, int statoordine, boolean bibitedolci, String nota, Date data, long idcliente,
+			Set<OrdineVoce> ordineVoci) {
+		super();
 		this.idordine = idordine;
 		this.statoordine = statoordine;
 		this.bibitedolci = bibitedolci;
 		this.nota = nota;
 		this.data = data;
-	//	this.cliente = cliente;
-		this.ordineVoci = ordineVoci;
 		this.idcliente = idcliente;
+		this.ordineVoci = ordineVoci;
 	}
+
 	public Set<OrdineVoce> getOrdineVoci() {
 		return ordineVoci;
 	}
@@ -58,11 +64,11 @@ public class Ordine {
 		this.ordineVoci = ordineVoci;
 	}
 
-	public Long getIdordine() {
+	public long getIdordine() {
 		return idordine;
 	}
 
-	public void setIdordine(Long idordine) {
+	public void setIdordine(long idordine) {
 		this.idordine = idordine;
 	}
 
@@ -74,11 +80,11 @@ public class Ordine {
 		this.statoordine = statoordine;
 	}
 
-	public int getBibitedolci() {
+	public boolean getBibitedolci() {
 		return bibitedolci;
 	}
 
-	public void setBibitedolci(int bibitedolci) {
+	public void setBibitedolci(boolean bibitedolci) {
 		this.bibitedolci = bibitedolci;
 	}
 
@@ -86,33 +92,23 @@ public class Ordine {
 		return nota;
 	}
 
-	public void setCommento(String nota) {
+	public void setNota(String nota) {
 		this.nota = nota;
 	}
-
-	public String getData() {
+	
+	public Date getData() {
 		return data;
 	}
-
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
-	
-	public Long getIdcliente() {
+	public long getIdcliente() {
 		return idcliente;
 	}
 
-	public void setIdcliente(Long idCliente) {
+	public void setIdcliente(long idCliente) {
 		this.idcliente = idCliente;
 	}
-/*	@XmlTransient
-	@JsonIgnore
-	public Cliente getCliente() {
-		return cliente;
-	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}*/
 	
 } 

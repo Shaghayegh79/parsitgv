@@ -1,6 +1,10 @@
 package com.example.security;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.util.ArrayList;
 import java.util.Collection;
+
+import javax.servlet.http.HttpSession;
 
 import com.example.model.Account;
 import com.example.model.Role;
@@ -12,6 +16,7 @@ import com.example.service.AccountServiceBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.ServerProperties.Session;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -26,7 +31,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public class AccountUserDetailsService implements UserDetailsService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
-
+    
     @Autowired
     private AccountServiceBean accountServiceBean;
 
@@ -37,8 +42,10 @@ public class AccountUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
         logger.info("> loadUserByUsername {}", username);
-
         Account account = accountServiceBean.getAccount(username);
+//        idCliente= account.getCliente_id();
+        
+
         if (account == null) {
             // Not found...
             throw new UsernameNotFoundException(
@@ -55,7 +62,6 @@ public class AccountUserDetailsService implements UserDetailsService {
         	
             grantedAuthorities.add(new SimpleGrantedAuthority(roleRepository.findOne(rolePerAccount.getRole_id()).getCode()));
         }
-
         User userDetails = new User(account.getUsername(),
                 account.getPassword(), account.isEnabled(),
                 !account.isExpired(), !account.isCredentialsexpired(),

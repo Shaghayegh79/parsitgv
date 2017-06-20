@@ -8,7 +8,7 @@ import com.example.model.Prodotto;
 public interface ProdottoRepository extends CrudRepository<Prodotto, Integer> {
     Prodotto findByNome(String nome);
     Prodotto findByTipoprodotto(String tipoprodotto);
-   // Prodotto findByOrdineVoci(String OrdineVoci);
+    Prodotto findByIdprodotto(int idProdotto);
 
     
     

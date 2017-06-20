@@ -13,13 +13,20 @@ import com.example.repository.OrdineRepository;
 public class OrdineService {
 	@Autowired 
 	private OrdineRepository ordineRepository;
-	public Ordine addOrdine(Ordine ordine, Long idCliente)
+	public Ordine addOrdine(Ordine ordine, long idCliente)
+	{
+		Ordine newOrdine=ordineRepository.save(ordine);
+		newOrdine.setIdcliente(idCliente);
+		return newOrdine;
+	}
+	public Ordine updateOrdine(Ordine ordine, long idCliente)
 	{
 		Ordine newOrdine=ordineRepository.save(ordine);
 		newOrdine.setIdcliente(idCliente);
 		return newOrdine;
 	}
 	
+
 	public List<Ordine> getOrdini()
 	{
 		return (List<Ordine>)ordineRepository.findAll();

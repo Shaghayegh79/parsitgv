@@ -32,7 +32,7 @@ public class AccountAuthenticationProvider
             UsernamePasswordAuthenticationToken token)
                     throws AuthenticationException {
         logger.info("> additionalAuthenticationChecks");
-
+       
         if (token.getCredentials() == null
                 || userDetails.getPassword() == null) {
             throw new BadCredentialsException("Credentials may not be null.");

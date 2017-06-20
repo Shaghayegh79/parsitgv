@@ -26,4 +26,8 @@ public class ProdottoService {
 	public Prodotto getProdotto(String nome) {
 		return prodottoRepository.findByNome(nome);
 	}
+	public Prodotto getProdottoById(int idProdotto) {
+		return prodottoRepository.findByIdprodotto(idProdotto);
+	}
+	
 }
