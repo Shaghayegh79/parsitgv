@@ -30,30 +30,25 @@ public class OrdineController {
 	private OrdineService ordineService;
 	@Autowired
 	private ProdottoService prodottoService;
-	private long idOrdine;
 	@PostMapping("clienti/{idCliente}/ordini")
 	public ResponseEntity<Ordine> addOrdine(@RequestBody WrapperCarello wrapperCarello,@PathVariable Long idCliente){
-
+		OrdineVoce ordineVoce=new OrdineVoce();
+		Set<OrdineVoce> ordineVoci= new HashSet<OrdineVoce>();		
+		//crea ogetti di voci di ordine dal ordine ricevuto		
+		for(VoceCarello v : wrapperCarello.getCarello()){
+		  ordineVoce.setProdotto(prodottoService.getProdottoById(v.getIdProdotto()));
+		  ordineVoci.add(ordineVoce);
+		}		
+		//crea oggetto ordine dal ordine ricevuto 
+		Ordine newOrdine=new Ordine();
 		wrapperCarello.getOrdine().setBibitedolci(false);
 		wrapperCarello.getOrdine().setStatoordine(0);
 		wrapperCarello.getOrdine().setData(new Date());
-		Ordine newOrdine=new Ordine();
-		
-		newOrdine= ordineService.addOrdine(wrapperCarello.getOrdine());
-		idOrdine=newOrdine.getIdordine();
-		
-		OrdineVoce ordineVoce=new OrdineVoce();
-		Set<OrdineVoce> ordineVoci= new HashSet<OrdineVoce>();		
-		
-		for(VoceCarello v : wrapperCarello.getCarello()){
-		  ordineVoce.setProdotto(prodottoService.getProdottoById(v.getIdProdotto()));
-		  ordineVoce.setIdordine(idOrdine);
-		  ordineVoci.add(ordineVoce);
-		}		
-		newOrdine.setOrdineVoci(ordineVoci);
-		newOrdine= ordineService.addOrdine(newOrdine);
-		return new ResponseEntity<Ordine>(newOrdine,HttpStatus.OK);
-						
+		//collega l'oggetto ordine con gli oggetti voci 
+		wrapperCarello.getOrdine().setOrdineVoci(ordineVoci);
+		//
+		newOrdine= ordineService.addOrdine(wrapperCarello.getOrdine());//ordine viene salvato in tabella ordine
+		return new ResponseEntity<Ordine>(newOrdine,HttpStatus.OK);						
 	}
 	
 	@GetMapping("clienti/{idCliente}/ordini")
@@ -68,7 +63,6 @@ public class OrdineController {
 		
 		return new ResponseEntity<Ordine>(OrdiniDelCliente,HttpStatus.OK);
 	}
-
 	
 	@GetMapping("/ordini")
 	public ResponseEntity<List<Ordine>> getOrdini(){
