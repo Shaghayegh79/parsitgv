@@ -7,19 +7,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.NamedStoredProcedureQueries;
-import javax.persistence.NamedStoredProcedureQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.ParameterMode;
-import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlTransient;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 //@CrossOrigin
 @Entity
 @Table(name = "tab_prodotto", schema="parsitgv")
@@ -161,5 +151,5 @@ public class Prodotto {
 		this.disponibile = disponibile;
 	}
 
-	
+
 }

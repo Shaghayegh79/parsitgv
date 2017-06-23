@@ -5,12 +5,12 @@ import java.util.HashMap;
 
 public class VoceCarello {
 	private int idProdotto;
-	private HashMap<String, Boolean> ingExtraScelti= new HashMap<String,Boolean>();
+	private HashMap<Integer, Boolean> ingExtraScelti= new HashMap<Integer,Boolean>();
 
 	public VoceCarello() {
 		super();
 	}
-	public VoceCarello(int idProdotto, String nome, BigDecimal prezzo, HashMap<String, Boolean> ingExtraScelti) {
+	public VoceCarello(int idProdotto, String nome, BigDecimal prezzo, HashMap<Integer, Boolean> ingExtraScelti) {
 		//super();
 		this.idProdotto = idProdotto;
 		this.ingExtraScelti = ingExtraScelti;
@@ -22,10 +22,10 @@ public class VoceCarello {
 		this.idProdotto = idProdotto;
 	}
 
-	public HashMap<String, Boolean> getIngExtraScelti() {
+	public HashMap<Integer, Boolean> getIngExtraScelti() {
 		return ingExtraScelti;
 	}
-	public void setIngExtraScelti(HashMap<String, Boolean> ingExtraScelti) {
+	public void setIngExtraScelti(HashMap<Integer, Boolean> ingExtraScelti) {
 		this.ingExtraScelti = ingExtraScelti;
 	}
 

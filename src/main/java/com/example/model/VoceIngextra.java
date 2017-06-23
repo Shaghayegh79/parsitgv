@@ -1,5 +1,6 @@
 package com.example.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,13 +19,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class VoceIngextra {
 	@Id @GeneratedValue
-	private Long id;
+	private long id;
 	
 	@Column(name="tab_ordine_voce_idvoce")
-	private int idvoce;
+	private Long idvoce;
 	
-	@ManyToOne
-	@JoinColumn(name="tab_ingextra_idingextra")
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="tab_ingextra_idingextra", nullable=false)
 	private Ingextra ingextra;
 	
 
@@ -32,34 +33,43 @@ public class VoceIngextra {
 		//super();
 	}
 
-	public VoceIngextra(Long id, int idingextra, Ingextra ingextra, int idvoce, OrdineVoce ordineVoce) {
-		//super();
+
+	public VoceIngextra(long id, Long idvoce, Ingextra ingextra) {
+		super();
 		this.id = id;
-		this.ingextra = ingextra;
 		this.idvoce = idvoce;
+		this.ingextra = ingextra;
 	}
 
-	public Long getId() {
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+
+	public void setId(long id) {
 		this.id = id;
 	}
+
+
+	public Long getIdvoce() {
+		return idvoce;
+	}
+
+
+	public void setIdvoce(Long idvoce) {
+		this.idvoce = idvoce;
+	}
+
 
 	public Ingextra getIngextra() {
 		return ingextra;
 	}
 
+
 	public void setIngextra(Ingextra ingextra) {
 		this.ingextra = ingextra;
 	}
 
-	public int getIdvoce() {
-		return idvoce;
-	}
 
-	public void setIdvoce(int idvoce) {
-		this.idvoce = idvoce;
-	}
 }

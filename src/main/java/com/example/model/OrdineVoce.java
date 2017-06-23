@@ -5,51 +5,50 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlTransient;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 //@CrossOrigin
 	@Entity
 	@Table(name="tab_ordine_voce")
 	public class OrdineVoce {
 		@Id @GeneratedValue
-		private int idvoce;
+		private long idvoce;
 		
 		@ManyToOne(cascade=CascadeType.ALL)
+	   // @Cascade({CascadeType.ALL})
 		@JoinColumn(name="tab_prodotto_idprodotto", nullable=false)
 		private Prodotto prodotto;
 		
 		@Column(name="tab_ordine_idordine")
 		private Long idordine;
 
-		@OneToMany
+	    @OneToMany(cascade=CascadeType.ALL)
 		@JoinColumn(name="tab_ordine_voce_idvoce")
-		private Set<VoceIngextra> voceIngextra; 
-		
+		private Set<VoceIngextra> voceIngextras;
+
 		public OrdineVoce() {
 			//super();
 		}
 
-		public OrdineVoce(int idvoce, Prodotto prodotto, Long idordine, Set<VoceIngextra> voceIngextra) {
-			super();
+		public OrdineVoce(long idvoce, Prodotto prodotto, Long idordine, Set<VoceIngextra> voceIngextras) {
+			//super();
 			this.idvoce = idvoce;
 			this.prodotto = prodotto;
 			this.idordine = idordine;
-			this.voceIngextra = voceIngextra;
+			this.voceIngextras = voceIngextras;
 		}
 
-		public int getIdvoce() {
+		public long getIdvoce() {
 			return idvoce;
 		}
 
-		public void setIdvoce(int idvoce) {
+		public void setIdvoce(long idvoce) {
 			this.idvoce = idvoce;
 		}
 
@@ -69,13 +68,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 			this.idordine = idordine;
 		}
 
-		public Set<VoceIngextra> getVoceIngextra() {
-			return voceIngextra;
+		public Set<VoceIngextra> getVoceIngextras() {
+			return voceIngextras;
 		}
 
-		public void setVoceIngextra(Set<VoceIngextra> voceIngextra) {
-			this.voceIngextra = voceIngextra;
+		public void setVoceIngextras(Set<VoceIngextra> voceIngextras) {
+			this.voceIngextras = voceIngextras;
 		}
 
-		
 }

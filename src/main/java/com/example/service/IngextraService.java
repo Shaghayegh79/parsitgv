@@ -24,4 +24,7 @@ public class IngextraService {
 	public Ingextra getIngextra(String nome) {
 		return ingextraRepository.findByNome(nome);
 	}
+	public Ingextra getIngextraByIdingextra(int idingextra) {
+		return ingextraRepository.findByIdingextra(idingextra);
+	}
 }

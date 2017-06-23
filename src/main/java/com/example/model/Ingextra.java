@@ -6,14 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlTransient;
 
-//import org.springframework.web.bind.annotation.CrossOrigin;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //@CrossOrigin
 @Entity
@@ -63,9 +58,5 @@ public class Ingextra {
 	public void setPrezzo(BigDecimal prezzo) {
 		this.prezzo = prezzo;
 	}
-	
-	
-	
-	
 
 }
