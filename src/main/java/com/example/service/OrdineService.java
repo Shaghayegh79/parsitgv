@@ -18,15 +18,16 @@ public class OrdineService {
 		Ordine newOrdine=ordineRepository.save(ordine);
 		return newOrdine;
 	}
-
-	
-
 	public List<Ordine> getOrdini()
 	{
 		return (List<Ordine>)ordineRepository.findAll();
 	}
-
+	public List<Ordine> getOrdiniByStato(Integer statoOrdine)
+	{
+		return (List<Ordine>)ordineRepository.findByStatoordine(statoOrdine);
+	}
 	public List<Ordine> getOrdiniDelCliente(Long idCliente) {
+
 		return (List<Ordine>)ordineRepository.findByIdcliente(idCliente);
 	}
 

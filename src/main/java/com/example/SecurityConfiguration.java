@@ -50,7 +50,9 @@ public class SecurityConfiguration {
               	//.authorizeRequests().anyRequest().hasRole("USER")
                 ///.authorizeRequests().anyRequest().hasAuthority("USER")
              	.antMatchers("/homePage.html","/prodotti","/allingextra").permitAll()
+             	.antMatchers("/ordini","/prodottiAdmin/**").hasAuthority("ADMIN")
              	.anyRequest().hasAuthority("USER");
+        	
              	//.and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
               	//.and().logout().logoutSuccessUrl("/");
              // .and()

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.model.VoceCarello;
 import com.example.model.VoceIngextra;
@@ -31,6 +32,7 @@ public class OrdineController {
 	private OrdineService ordineService;
 	@Autowired
 	private ProdottoService prodottoService;
+	
 	@PostMapping("clienti/{idCliente}/ordini")
 	public ResponseEntity<Ordine> addOrdine(@RequestBody WrapperCarello wrapperCarello,@PathVariable Long idCliente){
 		OrdineVoce ordineVoce=new OrdineVoce();
@@ -69,6 +71,14 @@ public class OrdineController {
 		
 		return new ResponseEntity<List<Ordine>>(listaOrdiniDelCliente,HttpStatus.OK);
 	}
+	
+	@GetMapping("ordini")
+	public ResponseEntity<List<Ordine>> getOrdiniByStato(@RequestParam("statoordine") Integer statoordine){
+		List<Ordine> listaOrdini= ordineService.getOrdiniByStato(statoordine);
+		
+		return new ResponseEntity<List<Ordine>>(listaOrdini,HttpStatus.OK);
+	}
+	
 	@GetMapping("clienti/{idCliente}/ordini/{idOrdine}")
 	public ResponseEntity<Ordine> getOrdineDelCliente(@PathVariable Long idCliente,@PathVariable Long idOrdine){
 		Ordine OrdiniDelCliente= ordineService.getOrdineDelCliente(idCliente,idOrdine);
@@ -76,27 +86,11 @@ public class OrdineController {
 		return new ResponseEntity<Ordine>(OrdiniDelCliente,HttpStatus.OK);
 	}
 	
-	@GetMapping("/ordini")
+	/*@GetMapping("/ordini")
 	public ResponseEntity<List<Ordine>> getOrdini(){
 		
 		List<Ordine> listaOrdini= ordineService.getOrdini();
 		return new ResponseEntity<List<Ordine>>(listaOrdini,HttpStatus.OK);
-	}
+	}*/
 	
 }
-/*		VoceIngextra voceIngextra=new VoceIngextra();
-		Set<VoceIngextra> voceIngextras= new HashSet<VoceIngextra>();	
-
-		for(VoceCarello v : wrapperCarello.getVociCarello()){
-			 for (Map.Entry<Integer, Boolean> entry : v.getIngExtraScelti().entrySet()) {
-				    if (entry.getValue()==true) {
-				    	voceIngextra.setIngextra(ingextraService.getIngextraByIdingextra(entry.getKey()));
-				    	voceIngextraService.addVoceIngextra(voceIngextra);
-				    	voceIngextras.add(voceIngextra);				    	
-				    }
-			 }
-			 ordineVoce.setVoceIngextras(voceIngextras);
-			 voceIngextras.clear();
-		}
-		
-		*/

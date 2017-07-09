@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Ordine {
 	@Id @GeneratedValue
 	@Column(name="idordine")
-	private long idordine;
+	private Long idordine;
 	@Column(name="statoordine")
 	private int statoordine;
 	@Column(name="bibitedolci")
@@ -44,7 +44,7 @@ public class Ordine {
 		//super();
 	}
 
-	public Ordine(long idordine, int statoordine, boolean bibitedolci, String nota, Date data, long idcliente,
+	public Ordine(Long idordine, int statoordine, boolean bibitedolci, String nota, Date data, long idcliente,
 			Set<OrdineVoce> ordineVoci) {
 		super();
 		this.idordine = idordine;
@@ -64,11 +64,11 @@ public class Ordine {
 		this.ordineVoci = ordineVoci;
 	}
 
-	public long getIdordine() {
+	public Long getIdordine() {
 		return idordine;
 	}
 
-	public void setIdordine(long idordine) {
+	public void setIdordine(Long idordine) {
 		this.idordine = idordine;
 	}
 
