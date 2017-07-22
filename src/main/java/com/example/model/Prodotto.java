@@ -54,14 +54,10 @@ public class Prodotto {
 		//super();
 	}
 
-
-
-
-	public Prodotto(int idprodotto, String label, String nome, String tipoprodotto, BigDecimal prezzo,
-			String ingredienti, String foto, boolean disponibile, Set<OrdineVoce> ordineVoci) {
-		//super();
+	public Prodotto(int idprodotto, String nome, String tipoprodotto, BigDecimal prezzo, String ingredienti,
+			String foto, boolean disponibile) {
+		super();
 		this.idprodotto = idprodotto;
-		//this.label = label;
 		this.nome = nome;
 		this.tipoprodotto = tipoprodotto;
 		this.prezzo = prezzo;
@@ -69,87 +65,61 @@ public class Prodotto {
 		this.foto = foto;
 		this.disponibile = disponibile;
 	}
-
-
-
 
 	public int getIdprodotto() {
 		return idprodotto;
 	}
 
-
 	public void setIdprodotto(int idprodotto) {
 		this.idprodotto = idprodotto;
 	}
-
-
-	/*public String getLabel() {
-		return label;
-	}
-
-	public void setLabel(String label) {
-		this.label = label;
-	}*/
-
-
-	public BigDecimal getPrezzo() {
-		return prezzo;
-	}
-
-
-	public void setPrezzo(BigDecimal prezzo) {
-		this.prezzo = prezzo;
-	}
-
 
 	public String getNome() {
 		return nome;
 	}
 
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 
 	public String getTipoprodotto() {
 		return tipoprodotto;
 	}
 
-
 	public void setTipoprodotto(String tipoprodotto) {
 		this.tipoprodotto = tipoprodotto;
 	}
 
+	public BigDecimal getPrezzo() {
+		return prezzo;
+	}
+
+	public void setPrezzo(BigDecimal prezzo) {
+		this.prezzo = prezzo;
+	}
 
 	public String getIngredienti() {
 		return ingredienti;
 	}
 
-
 	public void setIngredienti(String ingredienti) {
 		this.ingredienti = ingredienti;
 	}
-
 
 	public String getFoto() {
 		return foto;
 	}
 
-
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-
 
 	public boolean isDisponibile() {
 		return disponibile;
 	}
 
-
 	public void setDisponibile(boolean disponibile) {
 		this.disponibile = disponibile;
 	}
-
 
 }
